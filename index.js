@@ -14,9 +14,9 @@ const _config = {
 }
 
 const _populateConfig = (filename) => {
-    if (!filename) throw new Error("A valid subtitle filepath is required to populate config")
+    if (!filename) throw new Error("A valid subtitle filepath is required to populate config");
 
-    _config.filepath = path.join(__dirname, filename);
+    _config.filepath = path.isAbsolute(filename) ? filename : path.join(__dirname, filename);
     _config.subtitleText = fs.readFileSync(_config.filepath, 'utf8');
     _config.subtitleJSON = _parser(_config.subtitleText);
     return _config;
