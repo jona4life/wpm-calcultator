@@ -45,7 +45,7 @@ const _getAverageWPM = () => {
     const _wpmResults = [];
 
     const isStopDurationReached = () => {
-        if (DURATION !== "" && _config.subtitleJSON[_wpmResults.length]) {
+        if (DURATION && _config.subtitleJSON[_wpmResults.length]) {
             const next = _config.subtitleJSON[_wpmResults.length];
             const _start = ParseTime(next.startTime) - ParseTime("00:00:00");
             return _start <= (DURATION * 1000 * 60)
@@ -54,7 +54,7 @@ const _getAverageWPM = () => {
     }
 
     const isMaxCountReached = () => {
-        if (LINE_COUNT !== "") {
+        if (LINE_COUNT) {
             return _wpmResults.length < parseInt(LINE_COUNT)
         }
         return true;
