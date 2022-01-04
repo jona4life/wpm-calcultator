@@ -96,6 +96,7 @@ const _isWPMMoreThanAverage = (statement, averageWPM) => {
 
 module.exports = {
     _populateConfig,
+    _getWPM,
     _getAverageWPM,
     _getPointsWithWPMMoreThanAverage,
     _isWPMMoreThanAverage
