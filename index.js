@@ -28,15 +28,15 @@ const ParseTime = (time = "") => {
     return new Date(2021, 0, 2, timeSplit[0] || 0, timeSplit[1] || 0, timeSplit[2] || 0, timeSplit[3] || 0);
 }
 
-const _getWPM = (statement) => {
+const _getWPM = (statement, duration) => {
     const punctuations = [".", ",", "!", " "];
     let string = statement.text;
     for (let punctuation of punctuations) {
         string = string.trim().split(punctuation).map(e => e.trim()).join(" ");
     }
     const wordLength = string.trim().split(" ").map(e => e.trim()).filter(e => e != "" && e).length;
-    const duration = ParseTime(statement.endTime) - ParseTime(statement.startTime);
-    return Math.floor(((wordLength * 100) / (duration / 1000 * 100) * (60 * 100)) / 100);
+    const _duration = duration ? duration : ParseTime(statement.endTime) - ParseTime(statement.startTime);
+    return Math.floor(((wordLength * 100) / (_duration / 1000 * 100) * (60 * 100)) / 100);
 }
 
 const _getAverageWPM = () => {
